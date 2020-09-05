@@ -10,6 +10,9 @@
  * the license agreement.
  */
 
+import 'package:cubit_study/resources/routes.dart';
+import 'package:cubit_study/routes/login_route.dart';
+import 'package:cubit_study/routes/main_route.dart';
 import 'package:flutter/material.dart';
 
 class CubitApp extends StatelessWidget {
@@ -17,15 +20,30 @@ class CubitApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cubit Study',
+      initialRoute: Routes.login,
+      onGenerateRoute: _generateRoute,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(
-        body: Center(
-          child: Text('Cubits!'),
-        ),
-      ),
     );
+  }
+}
+
+Route _generateRoute(RouteSettings settings) {
+  switch (settings.name) {
+    case Routes.login:
+      return MaterialPageRoute<LoginRoute>(
+        builder: (context) => LoginRoute(),
+        settings: settings,
+      );
+    case Routes.main:
+      return MaterialPageRoute<MainRoute>(
+        builder: (context) => MainRoute(),
+        settings: settings,
+      );
+
+    default:
+      throw UnsupportedError('Can not generate route for ${settings.name}');
   }
 }
