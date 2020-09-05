@@ -11,6 +11,7 @@
  */
 
 import 'package:cubit_study/cubit_app.dart';
+import 'package:cubit_study/repositories/bogus_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
@@ -24,7 +25,11 @@ void main() {
     (l) => print('${l.time} - ${l.loggerName} - ${l.level.name}: ${l.message}'),
   );
 
+  final bogusRepository = BogusRepository();
+
   runApp(
-    CubitApp(),
+    CubitApp(
+      repository: bogusRepository,
+    ),
   );
 }
