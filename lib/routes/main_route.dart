@@ -17,8 +17,7 @@ import 'package:cubit_study/cubits/overview_states.dart';
 import 'package:cubit_study/repositories/bogus_repository.dart';
 import 'package:cubit_study/resources/routes.dart';
 import 'package:cubit_study/widgets/busy_indicator.dart';
-import 'package:cubit_study/widgets/camera_list.dart';
-import 'package:cubit_study/widgets/location_toggle.dart';
+import 'package:cubit_study/widgets/camera_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -119,16 +118,8 @@ class MainRoute extends StatelessWidget {
                 ],
               ),
               Divider(color: Colors.black),
-              Row(
-                children: [
-                  Expanded(
-                    child: Text('Cameras', style: theme.textTheme.headline5),
-                  ),
-                  LocationToggle(),
-                ],
-              ),
               Expanded(
-                child: CameraList(),
+                child: CameraDetails(),
               ),
             ],
           ),

@@ -10,7 +10,6 @@
  * the license agreement.
  */
 
-import 'package:cubit_study/cubits/location_visibility_cubit.dart';
 import 'package:cubit_study/cubits/login_cubit.dart';
 import 'package:cubit_study/cubits/overview_cubit.dart';
 import 'package:cubit_study/repositories/bogus_repository.dart';
@@ -55,15 +54,8 @@ class CubitApp extends StatelessWidget {
         return MaterialPageRoute<MainRoute>(
           builder: (context) => RepositoryProvider<BogusRepository>.value(
             value: repository,
-            child: MultiBlocProvider(
-              providers: [
-                BlocProvider<OverviewCubit>(
-                  create: (context) => OverviewCubit(repository),
-                ),
-                BlocProvider<LocationVisibilityCubit>(
-                  create: (context) => LocationVisibilityCubit(),
-                ),
-              ],
+            child: BlocProvider<OverviewCubit>(
+              create: (context) => OverviewCubit(repository),
               child: MainRoute(),
             ),
           ),
