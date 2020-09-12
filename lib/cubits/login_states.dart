@@ -16,8 +16,12 @@ import 'package:equatable/equatable.dart';
 abstract class LoginState extends Equatable {}
 
 class LoggedOutState extends LoginState {
+  final bool requestedByUser;
+
+  LoggedOutState({this.requestedByUser = true});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [requestedByUser];
 }
 
 class LoggingInState extends LoggedOutState {}

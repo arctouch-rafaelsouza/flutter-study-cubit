@@ -13,6 +13,7 @@
 import 'package:cubit_study/cubits/login_cubit.dart';
 import 'package:cubit_study/cubits/login_states.dart';
 import 'package:cubit_study/resources/routes.dart';
+import 'package:cubit_study/widgets/busy_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,22 +66,20 @@ class LoginRoute extends StatelessWidget {
                 SizedBox(height: 30.0),
                 BlocBuilder<LoginCubit, LoginState>(
                   builder: (context, state) => state is LoggingInState
-                      ? CircularProgressIndicator()
-                      : Builder(
-                          builder: (context) => FlatButton(
-                            color: Colors.grey,
-                            child: Text('Login'),
-                            onPressed: () {
-                              final form = Form.of(context);
+                      ? BusyIndicator()
+                      : FlatButton(
+                          color: Colors.grey,
+                          child: Text('Login'),
+                          onPressed: () {
+                            final form = Form.of(context);
 
-                              if (!form.validate()) return;
+                            if (!form.validate()) return;
 
-                              loginCubit.login(
-                                _usernameController.value.text,
-                                _passwordController.value.text,
-                              );
-                            },
-                          ),
+                            loginCubit.login(
+                              _usernameController.value.text,
+                              _passwordController.value.text,
+                            );
+                          },
                         ),
                 ),
               ],

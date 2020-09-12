@@ -13,19 +13,26 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
-class User extends Equatable {
-  final int id;
-  final String username;
-  final String name;
+class OverviewState extends Equatable {
+  final int temperature;
+  final List<int> cameraIds;
 
-  const User({
-    @required this.id,
-    @required this.username,
-    @required this.name,
-  })  : assert(id != null),
-        assert(username != null),
-        assert(name != null);
+  OverviewState({
+    @required this.temperature,
+    @required this.cameraIds,
+  })  : assert(temperature != null),
+        assert(cameraIds != null);
 
   @override
-  List<Object> get props => [id, username, name];
+  List<Object> get props => [temperature, cameraIds];
+}
+
+class LoadingOverviewState extends OverviewState {
+  LoadingOverviewState({
+    int temperature,
+    List<int> cameraIds,
+  }) : super(
+          temperature: temperature,
+          cameraIds: cameraIds,
+        );
 }

@@ -10,22 +10,27 @@
  * the license agreement.
  */
 
+import 'package:cubit_study/models/camera.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 
-class User extends Equatable {
-  final int id;
-  final String username;
-  final String name;
+class CameraState extends Equatable {
+  final Camera camera;
+  final bool busy;
 
-  const User({
-    @required this.id,
-    @required this.username,
-    @required this.name,
-  })  : assert(id != null),
-        assert(username != null),
-        assert(name != null);
+  CameraState({
+    this.camera,
+    this.busy = false,
+  });
 
   @override
-  List<Object> get props => [id, username, name];
+  List<Object> get props => [camera, busy];
+
+  CameraState copyWith({
+    Camera camera,
+    bool busy,
+  }) =>
+      CameraState(
+        camera: camera ?? this.camera,
+        busy: busy ?? this.busy,
+      );
 }

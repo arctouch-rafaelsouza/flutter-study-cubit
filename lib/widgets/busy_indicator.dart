@@ -10,22 +10,12 @@
  * the license agreement.
  */
 
-import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class User extends Equatable {
-  final int id;
-  final String username;
-  final String name;
-
-  const User({
-    @required this.id,
-    @required this.username,
-    @required this.name,
-  })  : assert(id != null),
-        assert(username != null),
-        assert(name != null);
-
+class BusyIndicator extends StatelessWidget {
   @override
-  List<Object> get props => [id, username, name];
+  Widget build(BuildContext context) => CircularProgressIndicator(
+        strokeWidth: 4.0,
+        valueColor: AlwaysStoppedAnimation(Colors.black),
+      );
 }
