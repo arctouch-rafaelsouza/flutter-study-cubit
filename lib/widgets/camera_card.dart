@@ -13,6 +13,7 @@
 import 'package:cubit_study/cubits/camera_cubit.dart';
 import 'package:cubit_study/models/camera.dart';
 import 'package:cubit_study/widgets/busy_indicator.dart';
+import 'package:cubit_study/widgets/value_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,12 +50,21 @@ class CameraCard extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
+                flex: 2,
                 child: Text(camera.description),
               ),
               Expanded(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(camera.enabled ? '100' : '0'),
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  color: Colors.black38,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: ValueDisplay(
+                      value: camera.enabled ? 100 : 0,
+                      suffix: '%',
+                      color: camera.enabled ? Colors.green : Colors.red,
+                    ),
+                  ),
                 ),
               ),
               Padding(

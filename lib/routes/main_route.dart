@@ -18,6 +18,7 @@ import 'package:cubit_study/repositories/bogus_repository.dart';
 import 'package:cubit_study/resources/routes.dart';
 import 'package:cubit_study/widgets/busy_indicator.dart';
 import 'package:cubit_study/widgets/camera_details.dart';
+import 'package:cubit_study/widgets/value_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -91,12 +92,21 @@ class MainRoute extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: BlocBuilder<OverviewCubit, OverviewState>(
-                      cubit: overviewCubit,
-                      builder: (context, state) => Text(
-                        'Current temperature: ${state.temperature}',
-                        style: theme.textTheme.headline5,
-                      ),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Current temperature: ',
+                          style: theme.textTheme.headline5,
+                        ),
+                        BlocBuilder<OverviewCubit, OverviewState>(
+                          cubit: overviewCubit,
+                          builder: (context, state) => ValueDisplay(
+                            value: state.temperature,
+                            suffix: '°',
+                            style: theme.textTheme.headline5,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(

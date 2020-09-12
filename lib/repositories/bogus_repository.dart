@@ -44,7 +44,7 @@ class BogusRepository {
     await _processingWait();
 
     if (username.toLowerCase() == 'admin' && password == '123') {
-      _loggedUser = User(id: 1, username: 'Admin', name: 'Sophocles');
+      _loggedUser = User(id: 1, username: 'Admin', name: 'Rockatansky');
     }
 
     _log.info('API returned. User $_loggedUser');

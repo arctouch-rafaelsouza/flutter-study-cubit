@@ -35,6 +35,16 @@ class Themes {
             letterSpacing: 1.4,
             color: Colors.black,
           ),
+          bodyText2: TextStyle(
+            fontSize: 14.0,
+            color: Colors.black,
+          ),
+          bodyText1: TextStyle(
+            fontSize: 16.0,
+            height: 2.0,
+            letterSpacing: 1.7,
+            color: Colors.black,
+          ),
         ),
       );
 }
