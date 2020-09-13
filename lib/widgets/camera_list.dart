@@ -41,8 +41,8 @@ class CameraList extends StatelessWidget {
                     LocationVisibilityCubit, LocationVisibilityState>(
                   builder: (context, visibilityState) => CameraCard(
                     camera: state.camera,
-                    isBusy: state.busy,
-                    isVisible: (state.camera.exterior &&
+                    busy: state.busy,
+                    highlight: (state.camera.exterior &&
                             visibilityState.showExterior) ||
                         (!state.camera.exterior &&
                             visibilityState.showInterior),

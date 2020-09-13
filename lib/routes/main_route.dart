@@ -31,8 +31,7 @@ class MainRoute extends StatelessWidget {
 
     return BlocListener<LoginCubit, LoginState>(
       cubit: loginCubit,
-      listenWhen: (oldState, newState) =>
-          oldState is LoggedInState && newState is! LoggedInState,
+      listenWhen: (oldState, newState) => newState is LoggedOutState,
       listener: (context, state) async {
         if (state is LoggedOutState && !state.requestedByUser) {
           await showDialog(

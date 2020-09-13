@@ -54,11 +54,7 @@ class BogusRepository {
 
   void logout() {
     _loggedUser = null;
-    _log.info('Logged out on server.');
-  }
-
-  void _checkUserIsLogged() {
-    if (_loggedUser == null) throw UnauthorizedError();
+    _log.info('Logged out of server.');
   }
 
   int currentTemperature() {
@@ -75,6 +71,7 @@ class BogusRepository {
   Future<Camera> getCameraData(int cameraId) async {
     await _processingWait(minTime: 0);
     _checkUserIsLogged();
+
     return _cameras.firstWhere((camera) => camera.id == cameraId);
   }
 
@@ -89,6 +86,10 @@ class BogusRepository {
     _cameras[index] = newCamera;
 
     return newCamera;
+  }
+
+  void _checkUserIsLogged() {
+    if (_loggedUser == null) throw UnauthorizedError();
   }
 
   Future<void> _processingWait({int minTime = 1, int maxOffset = 1}) =>

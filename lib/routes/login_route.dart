@@ -26,8 +26,7 @@ class LoginRoute extends StatelessWidget {
     final loginCubit = context.bloc<LoginCubit>();
 
     return BlocListener<LoginCubit, LoginState>(
-      listenWhen: (oldState, newState) =>
-          oldState is! LoggedInState && newState is LoggedInState,
+      listenWhen: (oldState, newState) => newState is LoggedInState,
       listener: (context, state) => Navigator.pushNamedAndRemoveUntil(
         context,
         Routes.main,
@@ -40,6 +39,18 @@ class LoginRoute extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                BlocBuilder<LoginCubit, LoginState>(
+                  builder: (context, state) => AnimatedOpacity(
+                    opacity: state is LogInFailedState ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 300),
+                    child: Container(
+                      margin: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(10.0),
+                      color: Colors.red,
+                      child: Text('Login failed'),
+                    ),
+                  ),
+                ),
                 TextFormField(
                   decoration: InputDecoration(hintText: 'Login'),
                   controller: _usernameController,
@@ -53,17 +64,6 @@ class LoginRoute extends StatelessWidget {
                       value.isEmpty ? 'Type a password' : null,
                   obscureText: true,
                 ),
-                BlocBuilder<LoginCubit, LoginState>(
-                  builder: (context, state) => state is LogInFailedState
-                      ? Container(
-                          margin: const EdgeInsets.all(10.0),
-                          padding: const EdgeInsets.all(10.0),
-                          color: Colors.red,
-                          child: Text('Login failed'),
-                        )
-                      : Container(),
-                ),
-                SizedBox(height: 30.0),
                 BlocBuilder<LoginCubit, LoginState>(
                   builder: (context, state) => state is LoggingInState
                       ? BusyIndicator()

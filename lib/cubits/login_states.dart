@@ -24,9 +24,15 @@ class LoggedOutState extends LoginState {
   List<Object> get props => [requestedByUser];
 }
 
-class LoggingInState extends LoggedOutState {}
+class LoggingInState extends LoginState {
+  @override
+  List<Object> get props => [];
+}
 
-class LogInFailedState extends LoggedOutState {}
+class LogInFailedState extends LoginState {
+  @override
+  List<Object> get props => [];
+}
 
 class LoggedInState extends LoginState {
   final User user;

@@ -25,7 +25,7 @@ class ValueDisplay extends ImplicitlyAnimatedWidget {
     this.color,
     this.style,
     Curve curve = Curves.linear,
-    Duration duration = const Duration(milliseconds: 400),
+    Duration duration = const Duration(milliseconds: 600),
     VoidCallback onEnd,
   })  : assert(value != null),
         super(

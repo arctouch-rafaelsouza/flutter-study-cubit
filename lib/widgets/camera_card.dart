@@ -19,17 +19,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CameraCard extends StatelessWidget {
   final Camera camera;
-  final bool isBusy;
-  final bool isVisible;
+  final bool busy;
+  final bool highlight;
 
   const CameraCard({
     Key key,
     @required this.camera,
-    @required this.isBusy,
-    @required this.isVisible,
+    @required this.busy,
+    @required this.highlight,
   })  : assert(camera != null),
-        assert(isBusy != null),
-        assert(isVisible != null),
+        assert(busy != null),
+        assert(highlight != null),
         super(key: key);
 
   @override
@@ -38,10 +38,10 @@ class CameraCard extends StatelessWidget {
 
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 100),
-      opacity: isVisible ? 1.0 : 0.2,
+      opacity: highlight ? 1.0 : 0.2,
       child: Card(
         elevation: 5.0,
-        color: isBusy ? Colors.deepOrangeAccent : Colors.blueGrey,
+        color: busy ? Colors.deepOrangeAccent : Colors.blueGrey,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -72,12 +72,12 @@ class CameraCard extends StatelessWidget {
                 child: Icon(camera.exterior ? Icons.landscape : Icons.home),
               ),
               RawMaterialButton(
-                onPressed: isBusy ? null : cameraCubit.toggle,
+                onPressed: busy ? null : cameraCubit.toggle,
                 child: Container(
                   width: 70.0,
                   padding: const EdgeInsets.all(8.0),
-                  color: isBusy ? Colors.transparent : Colors.grey,
-                  child: isBusy
+                  color: busy ? Colors.transparent : Colors.grey,
+                  child: busy
                       ? SizedBox(
                           height: 20.0,
                           child: FittedBox(
