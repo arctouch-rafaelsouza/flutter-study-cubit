@@ -10,12 +10,10 @@
  * the license agreement.
  */
 
-import 'package:cubit_study/cubits/camera_cubit.dart';
 import 'package:cubit_study/models/camera.dart';
 import 'package:cubit_study/widgets/busy_indicator.dart';
 import 'package:cubit_study/widgets/value_display.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CameraCard extends StatelessWidget {
   final Camera camera;
@@ -34,8 +32,6 @@ class CameraCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cameraCubit = context.bloc<CameraCubit>();
-
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 100),
       opacity: highlight ? 1.0 : 0.2,
@@ -72,7 +68,7 @@ class CameraCard extends StatelessWidget {
                 child: Icon(camera.exterior ? Icons.landscape : Icons.home),
               ),
               RawMaterialButton(
-                onPressed: busy ? null : cameraCubit.toggle,
+                onPressed: busy ? null : () => debugPrint('Enable/disable'),
                 child: Container(
                   width: 70.0,
                   padding: const EdgeInsets.all(8.0),
